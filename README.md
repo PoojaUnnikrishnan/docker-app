@@ -13,5 +13,3 @@ Step 2 : docker-compose up
 
 Note : For first time users of docker, After running the above command it will take a while to connect.If all goes well, you'll have a FHIR server running on port 8080.The base URL will be
 http://localhost:8080/fhir by default.
-
-**Cheers**
