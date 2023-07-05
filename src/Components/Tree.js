@@ -14,16 +14,6 @@ function Tree() {
         };
         fileReader.readAsText(event.target.files[0]);
     };
-    //This function copies the path of leaf nodes to clipboard
-    const copyToClipboard = (nodePath) => {
-        navigator.clipboard.writeText(nodePath)
-            .then(() => {
-                setCopiedNode(nodePath);
-            })
-            .catch((error) => {
-                console.error('Failed to copy node path to clipboard: ', error);
-            });
-    };
     return (
         <div className="flex-col">
             <div className="my-10 items-center">
