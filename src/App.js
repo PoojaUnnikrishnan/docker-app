@@ -10,6 +10,7 @@ function App() {
   return (
     <div className='font-serif'>
       <BrowserRouter>
+        {/* Home componenet is common to all the routes  */}
         <Home />
         <Routes>
           <Route exact path="/register" element={<Register />} />

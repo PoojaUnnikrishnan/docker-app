@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const PatientList = () => {
     const [patients, setPatients] = useState([]);
-
+    // This fetch the all the patient data from fhir/patient endpoint 
     useEffect(() => {
         const fetchData = async () => {
             try {

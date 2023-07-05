@@ -5,6 +5,7 @@ function TreeTraversal({ treeData }) {
     let tree = data.tree;
     let id = tree.id;
 
+    //This function copies the path of leaf nodes to clipboard
     const copyToClipboard = (text) => {
         navigator.clipboard
             .writeText(text)
@@ -16,12 +17,11 @@ function TreeTraversal({ treeData }) {
                 console.error("Failed to copy to clipboard:", error);
             });
     };
-
+    //Traverse through each node of the tree
     const traverseNodes = (nodes, parentPath = '', level = 0) => {
         return nodes.map((node) => {
             const nodePath = `${parentPath}/${node.id}`;
             const isLeafNode = !node.children || node.children.length === 0;
-
             const renderNode = (
                 <div className="flex text-slate-600" key={node.id} style={{ marginLeft: `${level * 20}px` }}>
                     ||---{node.name}
@@ -46,7 +46,6 @@ function TreeTraversal({ treeData }) {
     };
 
     const renderedNodes = traverseNodes([tree]);
-
     return (
         <div className="flex-col">
             <div className="text-lg font-bold">Tree ID: {id}</div>
@@ -54,7 +53,6 @@ function TreeTraversal({ treeData }) {
             <div>
                 <div className="px-20">
                     {renderedNodes}
-
                 </div>
             </div>
         </div>

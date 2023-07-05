@@ -49,7 +49,7 @@ const Register = () => {
                 ]
             });
             console.log(data)
-
+            //Making a post request to the fhir/patient end point for all the newly registered users.
             let config = {
                 method: 'post',
                 maxBodyLength: Infinity,

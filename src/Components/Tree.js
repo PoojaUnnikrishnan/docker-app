@@ -14,6 +14,7 @@ function Tree() {
         };
         fileReader.readAsText(event.target.files[0]);
     };
+    //This function copies the path of leaf nodes to clipboard
     const copyToClipboard = (nodePath) => {
         navigator.clipboard.writeText(nodePath)
             .then(() => {
