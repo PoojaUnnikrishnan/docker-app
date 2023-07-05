@@ -25,14 +25,20 @@ function Tree() {
     };
     return (
         <div className="flex-col">
-            <div className="my-10">
+            <div className="my-10 items-center">
+                <div>
+                    Upload a JSON file to get the directory tree
+                </div>
+                <br />
                 <input
                     type="file"
                     id="file"
                     className="input-file"
                     onChange={handleFileUpload}
                     name="Upload File"
+                    style={{ backgroundColor: "rgb(187 247 208)", }}
                 />
+
             </div>
             <div>
                 {treeData && <TreeTraversal treeData={treeData} />}
