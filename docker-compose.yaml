@@ -23,7 +23,7 @@ services:
       POSTGRES_DB: hapi
       POSTGRES_PASSWORD: hapi
   web:
-    image: "pooja-task-app"
+    image: "poojau98/pooja-task-app"
     ports:
       - 3000:80
 
