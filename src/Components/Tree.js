@@ -4,7 +4,6 @@ import TreeTraversal from "./TreeTraversal";
 
 function Tree() {
     const [treeData, setTreeData] = useState("");
-    const [copiedNode, setCopiedNode] = useState('');
     const handleFileUpload = (event) => {
         const fileReader = new FileReader();
         fileReader.onload = () => {
