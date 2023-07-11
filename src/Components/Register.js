@@ -8,6 +8,7 @@ const Register = () => {
     const [gender, setGender] = useState('')
     const [dob, setDob] = useState('')
     const [contactNo, setContactNo] = useState('')
+    const [email, setEmail] = useState('')
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
@@ -22,6 +23,9 @@ const Register = () => {
         if (contactNo && !/^\d{10}$/.test(contactNo)) {
             validationErrors.contactNo = "contact number must have 10 digits";
         }
+        if (email && !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            validationErrors.email = "email is incorrect";
+        }
         setErrors(validationErrors)
         return Object.keys(validationErrors).length === 0;
 
@@ -29,7 +33,7 @@ const Register = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         if (validateForm()) {
-            console.log(firstName, lastName, dob, contactNo, gender)
+            console.log(firstName, lastName, dob, contactNo, gender, email)
             let data = JSON.stringify({
                 "resourceType": "Patient",
                 "name": [
@@ -45,6 +49,9 @@ const Register = () => {
                 "telecom": [
                     {
                         "value": contactNo
+                    },
+                    {
+                        "value": email
                     }
                 ]
             });
@@ -71,63 +78,102 @@ const Register = () => {
         }
     };
     return (
-        <div className="flex justify-center items-center h-5/6 mt-10">
-            <div>
-                <div className='p-10'>
-                    <div className="text-2xl font-bold mb-7 flex justify-center">
-                        New Registration
-                    </div>
-                    <form onSubmit={handleFormSubmit} className='flex-col'>
-                        <div>
-                            <div className='border-2'>
-                                <label>FirstName:</label>
-                                <input type='text' id='firstName' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-                            </div>
-                            <div className='text-xs text-red-600 flex'>
-                                {errors.firstName && <span>{errors.firstName}</span>}
-                            </div>
-                            <br />
-                            <div className='border-2'>
-                                <label>LastName:</label>
-                                <input type='text' id='firstName' value={lastName} onChange={(e) => setLastName(e.target.value)} />
-                            </div>
-                            <br />
-                            <div className='flex border-2'>
-                                <label >Gender: </label>
-                                <select style={{ width: "80%" }} id='gender' value={gender} onChange={(e) => setGender(e.target.value)}>
-                                    <option value="">Select</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
-                                    <option value="unknown">Unknown</option>
-                                </select>
-                            </div>
-                            <div className='text-xs text-red-600 flex'>
-                                {errors.gender && <span>{errors.gender}</span>}
-                            </div>
-                            <br />
-                            <div className='border-2 '>
-                                <label>DOB: </label>
-                                <input style={{ width: "80%" }} type='date' id='dob' value={dob} onChange={(e) => setDob(e.target.value)} />
-                            </div>
-                            <br />
-                            <div className='border-2'>
-                                <label>Contact No:</label>
-                                <input type='text' id='contactNo' value={contactNo} onChange={(e) => setContactNo(e.target.value)} />
-                            </div>
-                            <div className='text-xs text-red-600 flex'>
-                                {errors.contactNo && <span>{errors.contactNo}</span>}
-                            </div>
-                        </div>
-                        <div className='border-2 mt-10'>
-                            <button type="submit" className='bg-green-200 p-1  w-full'>Register</button>
-                        </div>
-                    </form>
+        <div className="flex justify-center items-center mt-20">
+            <div className=''>
+                <div className="mb-7 flex justify-center">
+                    New Registration
                 </div>
-            </div >
+                <form onSubmit={handleFormSubmit} className='flex-col'>
+                    <div className='flex-col text-left'>
+                        <div className='text-sm/[11px]'>
+                            Name*
+                        </div>
+                        <div className='flex gap-5'>
+                            <div className=''>
+                                <div className=''>
+                                    <input type='text' id='firstName' value={firstName} onChange={(e) => setFirstName(e.target.value)} className='bg-gray-100' />
+                                </div>
+                                <div className='text-xs text-gray-400'>
+                                    <label>First Name</label>
+                                </div>
+                                <div className='text-xs text-red-600 flex'>
+                                    {errors.firstName && <span>{errors.firstName}</span>}
+                                </div>
+                            </div>
+                            <div className=''>
+                                <div>
+                                    <input type='text' id='lastName' value={lastName} onChange={(e) => setLastName(e.target.value)} className='bg-gray-100' />
+                                </div>
+                                <div className='text-xs text-gray-400'>
+                                    <label>Last Name</label>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                    <br />
+                    <div className='flex-col'>
+                        <div className='text-left text-sm/[11px]'>
+                            <label>
+                                Email
+                            </label>
+                        </div>
+                        <div>
+                            <input className='bg-gray-100 w-full' type='text' id='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                        </div>
+                        <div className='text-xs text-red-600 flex'>
+                            {errors.email && <span>{errors.email}</span>}
+                        </div>
+                    </div>
+                    <br />
+                    <div className='flex-col'>
+                        <div className='text-left text-sm/[11px]'>
+                            <label >Gender*</label>
+                        </div>
+                        <div>
+                            <select className='bg-gray-100 w-full text-gray-400' id='gender' value={gender} onChange={(e) => setGender(e.target.value)}>
+                                <option value="">Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                                <option value="unknown">Unknown</option>
+                            </select>
+
+                        </div>
+                        <div className='text-xs text-red-600 flex'>
+                            {errors.gender && <span>{errors.gender}</span>}
+                        </div>
+                    </div>
+                    <br />
+                    <div className=''>
+                        <div className='text-left text-sm/[11px]'>
+                            <label>DOB</label>
+                        </div>
+                        <div>
+                            <input className='bg-gray-100 w-full text-gray-400' type='date' id='dob' value={dob} onChange={(e) => setDob(e.target.value)} />
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        <div className='text-left text-sm/[11px]'>
+                            <label>Contact No</label>
+                        </div>
+                        <div className=''>
+                            <input className='w-full bg-gray-100' type='text' id='contactNo' value={contactNo} onChange={(e) => setContactNo(e.target.value)} />
+                        </div>
+                        <div className='text-xs text-red-600 flex'>
+                            {errors.contactNo && <span>{errors.contactNo}</span>}
+                        </div>
+                    </div>
+                    <div className='border-2 mt-10'>
+                        <button type="submit" className='bg-green-200 w-full'>Register</button>
+                    </div>
+                </form>
+            </div>
         </div >
     )
 }
 
 export default Register
+
+
