@@ -85,7 +85,7 @@ const Register = () => {
                 </div>
                 <form onSubmit={handleFormSubmit} className='flex-col'>
                     <div className='flex-col text-left'>
-                        <div className='text-sm/[11px]'>
+                        <div className='text-sm/[11px] pb-3'>
                             Name*
                         </div>
                         <div className='flex gap-5'>
@@ -113,7 +113,7 @@ const Register = () => {
                     </div>
                     <br />
                     <div className='flex-col'>
-                        <div className='text-left text-sm/[11px]'>
+                        <div className='text-left text-sm/[11px] pb-3'>
                             <label>
                                 Email
                             </label>
@@ -127,11 +127,11 @@ const Register = () => {
                     </div>
                     <br />
                     <div className='flex-col'>
-                        <div className='text-left text-sm/[11px]'>
+                        <div className='text-left text-sm/[11px] pb-3'>
                             <label >Gender*</label>
                         </div>
                         <div>
-                            <select className='bg-gray-100 w-full text-gray-400' id='gender' value={gender} onChange={(e) => setGender(e.target.value)}>
+                            <select className='bg-gray-100 w-full text-gray-400 p-1' id='gender' value={gender} onChange={(e) => setGender(e.target.value)}>
                                 <option value="">Select</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -146,16 +146,16 @@ const Register = () => {
                     </div>
                     <br />
                     <div className=''>
-                        <div className='text-left text-sm/[11px]'>
+                        <div className='text-left text-sm/[11px] pb-3'>
                             <label>DOB</label>
                         </div>
                         <div>
-                            <input className='bg-gray-100 w-full text-gray-400' type='date' id='dob' value={dob} onChange={(e) => setDob(e.target.value)} />
+                            <input className='bg-gray-100 w-full text-gray-400 p-1/2' type='date' id='dob' value={dob} onChange={(e) => setDob(e.target.value)} />
                         </div>
                     </div>
                     <br />
                     <div>
-                        <div className='text-left text-sm/[11px]'>
+                        <div className='text-left text-sm/[11px] pb-3'>
                             <label>Contact No</label>
                         </div>
                         <div className=''>
